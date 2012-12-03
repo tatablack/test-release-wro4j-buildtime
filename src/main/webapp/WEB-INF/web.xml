@@ -20,10 +20,6 @@
 		<listener-class>com.orange.wro.taglib.config.WroContextListener</listener-class>
 	</listener>
 	
-	<context-param>
-		<param-name>com.orange.wro.base.url</param-name>
-		<param-value>/wro</param-value>
-	</context-param>
 
 	<filter>
 		<filter-name>wroContextFilter</filter-name>

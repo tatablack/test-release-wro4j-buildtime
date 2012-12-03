@@ -8,7 +8,7 @@
 	<name>test release with wro4j used at build-time</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<wro4j.version>1.6.0</wro4j.version>
+		<wro4j.version>1.6.1</wro4j.version>
 	</properties>
 
 	<build>
@@ -81,9 +81,21 @@
 		</dependency>
 
 		<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <dependency>
 			<groupId>com.orange.wro4j</groupId>
 			<artifactId>wro4j-taglib</artifactId>
-			<version>1.2</version>
+			<version>1.4-SNAPSHOT-1354475578462</version>
 		</dependency>
     </dependencies>
 
