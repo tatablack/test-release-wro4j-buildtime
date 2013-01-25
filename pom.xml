@@ -8,7 +8,7 @@
 	<name>test release with wro4j used at build-time</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<wro4j.version>1.6.0</wro4j.version>
+		<wro4j.version>1.6.2</wro4j.version>
 	</properties>
 
 	<build>
@@ -26,6 +26,15 @@
 				<groupId>ro.isdc.wro4j</groupId>
 				<artifactId>wro4j-maven-plugin</artifactId>
 				<version>${wro4j.version}</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-utils</artifactId>
+                        <version>2.0.5</version>
+                    </dependency>
+                </dependencies>
+
 				<executions>
 					<execution>
 						<phase>prepare-package</phase>
@@ -36,18 +45,19 @@
 				</executions>
 
 				<configuration>
-					<targetGroups>jquery,jquery-ui,appli</targetGroups>
+					<targetGroups>jsonly,cssonly</targetGroups>
 					<ignoreMissingResources>false</ignoreMissingResources>
 					
-					<!-- I know this could be done using only a property file 
-						but I don't care -->
-					<wroManagerFactory>com.orange.wro.examples.buildtime.CustomWroManagerFactory</wroManagerFactory>
+					<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
 					
 					<!-- this contextFolder is important for wro4j to find the files -->
 					<contextFolder>${basedir}/src/main/webapp/</contextFolder>
-					
-					<!-- this destinationFolder is overriden by m2e-wro4j -->
-					<destinationFolder>${project.build.directory}/${project.build.finalName}/wro/</destinationFolder>
+
+                    <jsDestinationFolder>${project.build.directory}/${project.build.finalName}/wro/js</jsDestinationFolder>
+                    <cssDestinationFolder>${project.build.directory}/${project.build.finalName}/wro/css</cssDestinationFolder>
+
+                    <groupNameMappingFile>${project.build.directory}/${project.build.finalName}/wro-output-mapping.properties</groupNameMappingFile>
+
 					<wroFile>${basedir}/src/main/webapp/WEB-INF/wro.xml</wroFile>
                 </configuration>
 			</plugin>
@@ -81,9 +91,21 @@
 		</dependency>
 
 		<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <dependency>
 			<groupId>com.orange.wro4j</groupId>
 			<artifactId>wro4j-taglib</artifactId>
-			<version>1.2</version>
+			<version>1.4-SNAPSHOT-1359049752773</version>
 		</dependency>
     </dependencies>
 
